@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kaia Brooks</title>
+<meta name="description" content="Kaia Brooks — Austin, TX. All my links in one place.">
+<meta property="og:title" content="Kaia Brooks">
+<meta property="og:description" content="All my links in one place.">
+<meta property="og:image" content="avatar.jpg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤍</text></svg>">
+<style>
+  :root {
+    --cream: #f5efe6;
+    --sand: #e6d9c5;
+    --chocolate: #2e2118;
+    --cocoa: #4a3a2c;
+    --sage: #9aa88c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--chocolate);
+    color: var(--cream);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  .bg {
+    position: fixed;
+    inset: 0;
+    background: url("hero.jpg") center 20% / cover no-repeat;
+    filter: blur(18px) brightness(0.45) saturate(0.9);
+    transform: scale(1.15);
+    z-index: -1;
+  }
+  main {
+    width: 100%;
+    max-width: 460px;
+    padding: 56px 24px 40px;
+    text-align: center;
+  }
+  .avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 22%;
+    border: 3px solid var(--sand);
+    box-shadow: 0 8px 32px rgba(0,0,0,.45);
+  }
+  h1 {
+    margin-top: 18px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+  }
+  .loc {
+    margin-top: 4px;
+    font-size: .95rem;
+    color: var(--sand);
+  }
+  .bio {
+    margin-top: 12px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--cream);
+    opacity: .9;
+  }
+  .links {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .btn {
+    display: block;
+    padding: 17px 20px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active { transform: scale(.98); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--sand), #d4bfa0);
+    color: var(--chocolate);
+    box-shadow: 0 6px 24px rgba(230,217,197,.25);
+  }
+  .btn-primary:hover { box-shadow: 0 8px 32px rgba(230,217,197,.4); }
+  .btn-secondary {
+    background: rgba(245,239,230,.08);
+    color: var(--cream);
+    border: 1px solid rgba(230,217,197,.35);
+    backdrop-filter: blur(6px);
+  }
+  .btn-secondary:hover { background: rgba(245,239,230,.14); }
+  .btn small {
+    display: block;
+    font-weight: 400;
+    font-size: .78rem;
+    opacity: .75;
+    margin-top: 2px;
+  }
+  footer {
+    margin-top: 48px;
+    font-size: .75rem;
+    color: var(--sand);
+    opacity: .55;
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<main>
+  <img class="avatar" src="avatar.jpg" alt="Kaia Brooks">
+  <h1>Kaia Brooks</h1>
+  <p class="loc">austin, tx</p>
+  <p class="bio">your new favorite distraction. probably.</p>
+
+  <nav class="links">
+    <a class="btn btn-primary" href="https://www.fanvue.com/kaiabrooks">
+      🤍 VIP — see everything
+      <small>18+ · my exclusive page</small>
+    </a>
+    <a class="btn btn-secondary" href="https://x.com/kaiabrooks">𝕏 — where i post too much</a>
+    <a class="btn btn-secondary" href="https://www.instagram.com/kaiabrooks">Instagram — the highlight reel</a>
+  </nav>
+
+  <footer>© 2026 Kaia Brooks</footer>
+</main>
+</body>
+</html>
