@@ -144,9 +144,29 @@
 // already the href above, so the button works with javascript disabled.
 (function () {
   var CODES = { ig: "fv-1", tt: "fv-2", x: "fv-3" };
+  // Referrer fallback, so attribution does not depend on every bio link being
+  // hand-maintained with ?src. Explicit ?src always wins where it is present.
+  // Caveat worth knowing: in-app browsers (Instagram especially) frequently
+  // strip or omit document.referrer, so this recovers some traffic, not all —
+  // it is a safety net under ?src, never a replacement for it.
+  var REFERRERS = [
+    [/(^|\.)instagram\.com$/, "fv-1"],
+    [/(^|\.)tiktok\.com$/,    "fv-2"],
+    [/(^|\.)(x|twitter)\.com$/, "fv-3"],
+    [/(^|\.)t\.co$/,          "fv-3"]
+  ];
+  function fromReferrer() {
+    if (!document.referrer) return null;
+    var host;
+    try { host = new URL(document.referrer).hostname; } catch (e) { return null; }
+    for (var i = 0; i < REFERRERS.length; i++) {
+      if (REFERRERS[i][0].test(host)) return REFERRERS[i][1];
+    }
+    return null;
+  }
   try {
     var src = new URLSearchParams(location.search).get("src");
-    var code = CODES[src];
+    var code = CODES[src] || fromReferrer();
     if (!code) return;
     var a = document.getElementById("fanvue");
     if (a) a.href = "https://www.fanvue.com/itskaiabrooks?fv=" + code;
