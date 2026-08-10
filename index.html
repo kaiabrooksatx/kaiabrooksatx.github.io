@@ -120,7 +120,7 @@
   <p class="bio">your new favorite distraction. probably.</p>
 
   <nav class="links">
-    <a class="btn btn-primary" href="https://www.fanvue.com/itskaiabrooks">
+    <a id="fanvue" class="btn btn-primary" href="https://www.fanvue.com/itskaiabrooks?fv=fv-4">
       🤍 VIP — see everything
       <small>18+ · my exclusive page</small>
     </a>
@@ -130,5 +130,30 @@
 
   <footer>© 2026 Kaia Brooks</footer>
 </main>
+
+<script>
+// Source attribution. Bio links carry ?src=ig|tt|x ; this swaps the Fanvue
+// button to the matching Fanvue tracking link so every signup is attributable
+// to the platform that sent it. Codes come from the Fanvue tracking-links API
+// (create-tracking-link); the URL form is ?fv=<code> on the creator profile.
+// Verified 2026-08-10: Fanvue counts these clicks CLIENT-SIDE in javascript —
+// five curl requests registered zero clicks, one real browser visit registered
+// one. Bots and link-preview crawlers therefore do not inflate the number,
+// which is what makes `clicks` usable as a qualified-visit denominator.
+// Unknown or absent ?src falls through to fv-4 (linkpage-direct), which is
+// already the href above, so the button works with javascript disabled.
+(function () {
+  var CODES = { ig: "fv-1", tt: "fv-2", x: "fv-3" };
+  try {
+    var src = new URLSearchParams(location.search).get("src");
+    var code = CODES[src];
+    if (!code) return;
+    var a = document.getElementById("fanvue");
+    if (a) a.href = "https://www.fanvue.com/itskaiabrooks?fv=" + code;
+  } catch (e) {
+    // Never let attribution break the link itself — the static href stands.
+  }
+})();
+</script>
 </body>
 </html>
