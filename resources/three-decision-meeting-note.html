@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 3-Decision Meeting Note — Kaia Brooks</title>
+<meta name="description" content="A free prompt and Obsidian layout for turning a meeting transcript into decisions, open loops, and receipts.">
+<style>
+  :root { --cream:#f5efe6; --sand:#e6d9c5; --chocolate:#2e2118; --sage:#9aa88c; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--chocolate); color:var(--cream); font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+  main { width:min(760px,calc(100% - 40px)); margin:0 auto; padding:48px 0 64px; }
+  a { color:var(--sand); } .eyebrow { color:var(--sage); font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:.78rem; }
+  h1 { font-size:clamp(2rem,7vw,3.5rem); line-height:1.05; margin:.35rem 0 1rem; }
+  .lede { font-size:1.2rem; color:var(--sand); } section { margin-top:2.6rem; }
+  pre { white-space:pre-wrap; overflow-wrap:anywhere; padding:1.2rem; border-radius:12px; background:rgba(245,239,230,.08); border:1px solid rgba(230,217,197,.22); color:var(--cream); font:14px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; }
+  .back { display:inline-block; margin-bottom:2rem; text-decoration:none; } .note { color:var(--sand); font-size:.9rem; }
+</style>
+<main>
+  <a class="back" href="../index.html">← Kaia Brooks</a>
+  <p class="eyebrow">free workflow</p>
+  <h1>The 3-Decision Meeting Note</h1>
+  <p class="lede">Most meeting summaries are too broad to use. This turns a transcript into the next three things that actually change what happens next.</p>
+  <section><h2>Paste this into your tool of choice</h2><pre>Read the transcript below. Do not summarize the whole meeting.
+
+Return exactly these sections:
+
+## Decisions (maximum 3)
+- [decision] — owner: [name or unassigned] — due: [date or unknown]
+
+## Open loops (maximum 3)
+- [what remains unresolved] — next action: [specific action]
+
+## Receipts
+- [short quote or timestamp supporting each decision]
+
+Rules:
+- A decision is something the group agreed to do, stop, choose, or defer.
+- Do not infer commitments that are not stated.
+- If no decision was made, say "No decision recorded" rather than inventing one.
+- Preserve uncertainty: use "unknown" where the transcript does not name an owner or date.
+
+TRANSCRIPT:
+[paste transcript]</pre></section>
+  <section><h2>Obsidian layout</h2><pre>---
+meeting:
+date:
+source:
+---
+
+## Decisions
+- [ ] Decision — owner: — due:
+
+## Open loops
+- [ ] Next action — owner:
+
+## Receipts
+-</pre></section>
+  <section class="note"><p>Review the output before relying on it. Do not paste confidential material into a tool without confirming its data policy and your organization’s approval. This is a workflow template, not legal, financial, medical, or HR advice.</p></section>
+</main>
+</html>
