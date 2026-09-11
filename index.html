@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kaia Brooks</title>
-<meta name="description" content="Kaia Brooks — Austin, TX. AI workflows, wellness, and the private side of Kaia's week.">
+<meta name="description" content="Kaia Brooks — practical AI, money and world affairs, with a private side.">
 <meta property="og:title" content="Kaia Brooks">
 <meta property="og:description" content="All my links in one place.">
 <meta property="og:image" content="avatar.jpg">
@@ -99,7 +99,7 @@
   .btn small {
     display: block;
     font-weight: 400;
-    font-size: .78rem;
+    font-size: .875rem;
     opacity: .75;
     margin-top: 2px;
   }
@@ -117,7 +117,7 @@
   <img class="avatar" src="avatar.jpg" alt="Kaia Brooks">
   <h1>Kaia Brooks</h1>
   <p class="loc">austin, tx</p>
-  <p class="bio">ai workflows, wellness, and the private side of my week.</p>
+  <p class="bio">practical AI. money, power, and how the world works.<br>skeptical mind. capitalist. occasionally distracted by the outfit.</p>
 
   <nav class="links">
     <a class="btn btn-secondary" href="resources/three-decision-meeting-note.html">
@@ -125,10 +125,14 @@
       <small>turn a transcript into the next three things that matter</small>
     </a>
     <a id="fanvue" class="btn btn-primary" href="https://www.fanvue.com/itskaiabrooks?fv=fv-4">
-      🤍 VIP — the private side of my week
-      <small>weekly drops, early looks, and a vote on what i make next</small>
+      🤍 The private side — Fanvue
+      <small>browse my profile and previews · subscriptions and individual paid sets are separate</small>
     </a>
-    <a class="btn btn-secondary" href="https://x.com/itskaiabrooks">𝕏 — where i post too much</a>
+    <a class="btn btn-secondary" href="resources/check-the-claim.html">
+      Before you share the headline
+      <small>five checks for numbers, forecasts, and confident nonsense</small>
+    </a>
+    <a class="btn btn-secondary" href="https://x.com/itskaiabrooks">𝕏 — ideas, receipts, and dry humor</a>
     <a class="btn btn-secondary" href="https://www.instagram.com/itskaiabrooks">Instagram — the highlight reel</a>
   </nav>
 
@@ -136,16 +140,11 @@
 </main>
 
 <script>
-// Source attribution. Bio links carry ?src=ig|tt|x ; this swaps the Fanvue
-// button to the matching Fanvue tracking link so every signup is attributable
-// to the platform that sent it. Codes come from the Fanvue tracking-links API
-// (create-tracking-link); the URL form is ?fv=<code> on the creator profile.
-// Verified 2026-08-10: Fanvue counts these clicks CLIENT-SIDE in javascript —
-// five curl requests registered zero clicks, one real browser visit registered
-// one. Bots and link-preview crawlers therefore do not inflate the number,
-// which is what makes `clicks` usable as a qualified-visit denominator.
-// Unknown or absent ?src falls through to fv-4 (linkpage-direct), which is
-// already the href above, so the button works with javascript disabled.
+// Platform attribution uses existing Fanvue codes verified against the API on
+// 2026-09-11. This does not identify an individual post or unique visitor.
+// Missing/stripped referrers and cross-device visits limit attribution.
+// The one historic recorded click may include the August browser QA visit.
+// Unknown sources use fv-4; preserve this fallback when JavaScript is disabled.
 (function () {
   var CODES = { ig: "fv-1", tt: "fv-2", x: "fv-3" };
   // Referrer fallback, so attribution does not depend on every bio link being
