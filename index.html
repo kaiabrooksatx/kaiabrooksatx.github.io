@@ -120,13 +120,14 @@
   <p class="bio">practical AI. money, power, and how the world works.<br>skeptical mind. capitalist. occasionally distracted by the outfit.</p>
 
   <nav class="links">
+    <a id="fanvue" class="btn btn-primary" href="https://www.fanvue.com/itskaiabrooks?fv=fv-11">
+      Browse my photos on Fanvue
+      <small>18+ · follow free · start with the public previews</small>
+    </a>
+    <p style="font-size:.85rem;line-height:1.5;color:var(--sand)">Lake days, courtside, and the playful side.<br>Subscriptions and individually priced sets are separate purchases.</p>
     <a class="btn btn-secondary" href="resources/three-decision-meeting-note.html">
       Free — the 3-decision meeting note
       <small>turn a transcript into the next three things that matter</small>
-    </a>
-    <a id="fanvue" class="btn btn-primary" href="https://www.fanvue.com/itskaiabrooks?fv=fv-4">
-      🤍 The private side — Fanvue
-      <small>browse my profile and previews · subscriptions and individual paid sets are separate</small>
     </a>
     <a class="btn btn-secondary" href="resources/check-the-claim.html">
       Before you share the headline
@@ -141,22 +142,22 @@
 
 <script>
 // Platform attribution uses existing Fanvue codes verified against the API on
-// 2026-09-11. This does not identify an individual post or unique visitor.
+// 2026-09-14 (traction campaign). This does not identify an individual post or unique visitor.
 // Missing/stripped referrers and cross-device visits limit attribution.
 // The one historic recorded click may include the August browser QA visit.
-// Unknown sources use fv-4; preserve this fallback when JavaScript is disabled.
+// Unknown sources use fv-11; preserve this fallback when JavaScript is disabled.
 (function () {
-  var CODES = { ig: "fv-1", tt: "fv-2", x: "fv-3" };
+  var CODES = { ig: "fv-8", tt: "fv-10", x: "fv-9" };
   // Referrer fallback, so attribution does not depend on every bio link being
   // hand-maintained with ?src. Explicit ?src always wins where it is present.
   // Caveat worth knowing: in-app browsers (Instagram especially) frequently
   // strip or omit document.referrer, so this recovers some traffic, not all —
   // it is a safety net under ?src, never a replacement for it.
   var REFERRERS = [
-    [/(^|\.)instagram\.com$/, "fv-1"],
-    [/(^|\.)tiktok\.com$/,    "fv-2"],
-    [/(^|\.)(x|twitter)\.com$/, "fv-3"],
-    [/(^|\.)t\.co$/,          "fv-3"]
+    [/(^|\.)instagram\.com$/, "fv-8"],
+    [/(^|\.)tiktok\.com$/,    "fv-10"],
+    [/(^|\.)(x|twitter)\.com$/, "fv-9"],
+    [/(^|\.)t\.co$/,          "fv-9"]
   ];
   function fromReferrer() {
     if (!document.referrer) return null;
