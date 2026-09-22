@@ -120,9 +120,9 @@
   <p class="bio">practical AI. money, power, and how the world works.<br>skeptical mind. capitalist. occasionally distracted by the outfit.</p>
 
   <nav class="links">
-    <a id="fanvue" class="btn btn-primary" href="https://www.fanvue.com/itskaiabrooks?fv=fv-11">
-      Browse my photos on Fanvue
-      <small>18+ · follow free · start with the public previews</small>
+    <a id="fanvue" class="btn btn-primary" href="https://www.fanvue.com/itskaiabrooks/fv-11?free_trial=282358af-5f44-4910-aeaa-72c37f2d33e1">
+      7 days free on Fanvue
+      <small>18+ · free trial, then $7.99/mo · sets priced separately</small>
     </a>
     <p style="font-size:.85rem;line-height:1.5;color:var(--sand)">Lake days, courtside, and the playful side.<br>Subscriptions and individually priced sets are separate purchases.</p>
     <a class="btn btn-secondary" href="resources/three-decision-meeting-note.html">
@@ -146,8 +146,15 @@
 // Missing/stripped referrers and cross-device visits limit attribution.
 // The one historic recorded click may include the August browser QA visit.
 // Unknown sources use fv-11; preserve this fallback when JavaScript is disabled.
+//
+// URL FORMAT (measured 2026-09-22): Fanvue only counts a click on the PATH form,
+// https://www.fanvue.com/itskaiabrooks/fv-N . The query form ?fv=fv-N used here
+// from 2026-09-14 to 2026-09-22 registered nothing (test hit on fv-9 via ?fv= -> 0,
+// test hit on fv-10 via /fv-10 -> 1). Never revert to the query form.
+// The free_trial parameter is the 7-day trial link created 2026-09-21.
 (function () {
   var CODES = { ig: "fv-8", tt: "fv-10", x: "fv-9" };
+  var TRIAL = "?free_trial=282358af-5f44-4910-aeaa-72c37f2d33e1";
   // Referrer fallback, so attribution does not depend on every bio link being
   // hand-maintained with ?src. Explicit ?src always wins where it is present.
   // Caveat worth knowing: in-app browsers (Instagram especially) frequently
@@ -173,7 +180,7 @@
     var code = CODES[src] || fromReferrer();
     if (!code) return;
     var a = document.getElementById("fanvue");
-    if (a) a.href = "https://www.fanvue.com/itskaiabrooks?fv=" + code;
+    if (a) a.href = "https://www.fanvue.com/itskaiabrooks/" + code + TRIAL;
   } catch (e) {
     // Never let attribution break the link itself — the static href stands.
   }
