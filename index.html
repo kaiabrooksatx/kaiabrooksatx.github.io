@@ -120,7 +120,7 @@
   <p class="bio">practical AI. money, power, and how the world works.<br>skeptical mind. capitalist. occasionally distracted by the outfit.</p>
 
   <nav class="links">
-    <a id="fanvue" class="btn btn-primary" href="https://www.fanvue.com/itskaiabrooks/fv-11?free_trial=282358af-5f44-4910-aeaa-72c37f2d33e1">
+    <a id="fanvue" class="btn btn-primary" href="https://www.fanvue.com/itskaiabrooks?free_trial=282358af-5f44-4910-aeaa-72c37f2d33e1">
       7 days free on Fanvue
       <small>18+ · free trial, then $7.99/mo · sets priced separately</small>
     </a>
@@ -141,30 +141,45 @@
 </main>
 
 <script>
-// Platform attribution uses existing Fanvue codes verified against the API on
-// 2026-09-14 (traction campaign). This does not identify an individual post or unique visitor.
-// Missing/stripped referrers and cross-device visits limit attribution.
-// The one historic recorded click may include the August browser QA visit.
-// Unknown sources use fv-11; preserve this fallback when JavaScript is disabled.
+// Platform attribution, per source, via one free-trial link each (created 2026-09-28).
+// This does not identify an individual post or unique visitor, and missing/stripped
+// referrers and cross-device visits limit it further. Unknown sources fall back to the
+// shared trial link, which is also the static href so the offer still works with
+// JavaScript disabled.
 //
-// URL FORMAT (measured 2026-09-22): Fanvue only counts a click on the PATH form,
-// https://www.fanvue.com/itskaiabrooks/fv-N . The query form ?fv=fv-N used here
-// from 2026-09-14 to 2026-09-22 registered nothing (test hit on fv-9 via ?fv= -> 0,
-// test hit on fv-10 via /fv-10 -> 1). Never revert to the query form.
-// The free_trial parameter is the 7-day trial link created 2026-09-21.
+// URL FORMAT (measured 2026-09-22, re-confirmed 2026-09-28): Fanvue only counts a click on
+// the PATH form, https://www.fanvue.com/itskaiabrooks/fv-N . The query form ?fv=fv-N
+// registers nothing (2026-09-28 re-test: one /fv-11 hit took the counter 4 -> 5; two
+// ?fv=fv-11 hits added zero). Never use the query form for attribution.
+//
+// BUT THE PATH FORM SILENTLY KILLS THE TRIAL (found 2026-09-28 by walking the funnel as a
+// visitor). https://www.fanvue.com/itskaiabrooks/fv-11?free_trial=... 302s to a bare
+// /itskaiabrooks and drops the query string, so every visitor who clicked a button reading
+// "7 days free on Fanvue" landed on a page with no trial on it. Six clicks, all of them
+// shown a broken offer.
+//
+// You cannot have both on one URL. Resolution: attribute on the TRIAL LINK instead of the
+// tracking link. Each source gets its own free-trial link, and its `usedCount` gives
+// per-source attribution on trial STARTS — a better metric than clicks, since a click we
+// cannot convert is not worth measuring. Read them with `list-free-trial-links`.
 (function () {
-  var CODES = { ig: "fv-8", tt: "fv-10", x: "fv-9" };
-  var TRIAL = "?free_trial=282358af-5f44-4910-aeaa-72c37f2d33e1";
+  // per-source 7-day trial links, created 2026-09-28
+  var TRIALS = {
+    ig: "9f1a8de7-8a78-40ff-8d8d-05e3b269b9a6",
+    x:  "dbd39476-4cd2-4b80-be2c-820704d40d3c",
+    tt: "3973843a-2d44-48ae-b735-f6e83a04bfd3"
+  };
+  var DEFAULT_TRIAL = "282358af-5f44-4910-aeaa-72c37f2d33e1";  // bio-and-linkpage-2026-09
   // Referrer fallback, so attribution does not depend on every bio link being
   // hand-maintained with ?src. Explicit ?src always wins where it is present.
   // Caveat worth knowing: in-app browsers (Instagram especially) frequently
   // strip or omit document.referrer, so this recovers some traffic, not all —
   // it is a safety net under ?src, never a replacement for it.
   var REFERRERS = [
-    [/(^|\.)instagram\.com$/, "fv-8"],
-    [/(^|\.)tiktok\.com$/,    "fv-10"],
-    [/(^|\.)(x|twitter)\.com$/, "fv-9"],
-    [/(^|\.)t\.co$/,          "fv-9"]
+    [/(^|\.)instagram\.com$/, "ig"],
+    [/(^|\.)tiktok\.com$/,    "tt"],
+    [/(^|\.)(x|twitter)\.com$/, "x"],
+    [/(^|\.)t\.co$/,          "x"]
   ];
   function fromReferrer() {
     if (!document.referrer) return null;
@@ -176,11 +191,10 @@
     return null;
   }
   try {
-    var src = new URLSearchParams(location.search).get("src");
-    var code = CODES[src] || fromReferrer();
-    if (!code) return;
+    var src = new URLSearchParams(location.search).get("src") || fromReferrer();
+    var trial = TRIALS[src] || DEFAULT_TRIAL;
     var a = document.getElementById("fanvue");
-    if (a) a.href = "https://www.fanvue.com/itskaiabrooks/" + code + TRIAL;
+    if (a) a.href = "https://www.fanvue.com/itskaiabrooks?free_trial=" + trial;
   } catch (e) {
     // Never let attribution break the link itself — the static href stands.
   }
